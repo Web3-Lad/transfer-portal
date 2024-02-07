@@ -1,4 +1,5 @@
-export const contractAddress = "0x7f4edb606344250807a0a4d5a865a9c925068114";
+// export const contractAddress = "0x7f4edb606344250807a0a4d5a865a9c925068114";
+export const contractAddress = "0x97beefba836e23a2fe31101a0ab4586f9edf0da6";
 export const contractABI = [
   {
     "inputs": [],
@@ -54,6 +55,30 @@ export const contractABI = [
     ],
     "name": "Transfer",
     "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_value",
+        "type": "uint256"
+      }
+    ],
+    "name": "airDrop",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
     "inputs": [

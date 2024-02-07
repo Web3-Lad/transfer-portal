@@ -11,6 +11,8 @@ function App() {
   const [contract, setContract] = useState(null);
   const [recieverAccount, setRecieverAccount] = useState("");
   const [sendValue, setSendValue] = useState("");
+  const [airdropAccount, setAirdropAccount] = useState("");
+  const [airdropValue, setAirdropValue] = useState("");
   useEffect(() => {
     const connectWallet = async () => {
       if (window.ethereum) {
@@ -21,6 +23,7 @@ function App() {
 
             const contractInstance = new web3Instance.eth.Contract(contractABI, contractAddress);
             setContract(contractInstance);
+            console.log(contractInstance);
 
             const accounts = await web3Instance.eth.getAccounts();
             setAccount(accounts[0]);
@@ -49,6 +52,24 @@ function App() {
       alert('Please connect an Ethereum wallet.');
     }
   }
+  const handleAirDrop = async () => {
+    if (window.ethereum) {
+      try {
+        if (airdropValue > 10) {
+          alert("Can't airdrop more than 10 tokens!!");
+          return;
+        }
+        console.log(airdropAccount);
+        const val = airdropValue + "000000000000000000";
+        const incSupply = await contract.methods.airDrop(airdropAccount, val).send({ from: account });
+        console.log("Inc supply : ", incSupply);
+      } catch (err) {
+        console.log("error while sending money: ", err);
+      }
+    } else {
+      alert('Please connect an Ethereum wallet.');
+    }
+  }
 
 
   return (
@@ -57,6 +78,7 @@ function App() {
         <div className='wallet-address-section'>
           Wallet Address : {account}
         </div>
+        <div className='heading'>Transfer Tokens to someone</div>
         <div>
           <div className='transfer-address'>
             Transfer to :
@@ -87,7 +109,7 @@ function App() {
           </div>
           <div
             className='send-token'
-            onClick={() => { handleSend(); console.log("Hi") }}
+            onClick={() => { handleSend() }}
           >
             <div
               className='send-token-button'
@@ -95,7 +117,46 @@ function App() {
               Send
             </div>
           </div>
-
+        </div>
+        <div className='heading'>Air Drop Tokens</div>
+        <div>
+          <div className='transfer-address'>
+            AirDrop to :
+            <span>
+              <input
+                onChange={(e) => setAirdropAccount(e.target.value)}
+                type='text'
+                className='transfer-address-input'
+                value={airdropAccount}
+                placeholder='Enter reciever account'
+              />
+            </span>
+          </div>
+          <div className='amount-transfer'>
+            Amount to air drop :
+            <span>
+              <input
+                className='amount-transfer-input'
+                onChange={(e) => {
+                  const val = e.target.value;
+                  setAirdropValue(val)
+                }}
+                type='text'
+                value={airdropValue}
+                placeholder='Enter account to send'
+              />
+            </span>
+          </div>
+          <div
+            className='send-token'
+            onClick={() => { handleAirDrop() }}
+          >
+            <div
+              className='send-token-button'
+            >
+              Air Drop
+            </div>
+          </div>
         </div>
       </div>
     </>

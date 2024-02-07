@@ -1,7 +1,8 @@
 .page {
   color: #FFFFFF;
-  margin: 20vh 0;
+  padding: 10vh 0;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  overflow: scroll;
 }
 
 .wallet-address-section {
@@ -27,6 +28,13 @@
   display: flex;
   justify-content: center;
   font-size: large;
+}
+
+.heading {
+  color: aqua;
+  text-align: center;
+  font-size: x-large;
+  margin-top: 10vh;
 }
 
 .amount-transfer-input {
