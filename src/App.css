@@ -1,0 +1,52 @@
+.page {
+  color: #FFFFFF;
+  margin: 20vh 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.wallet-address-section {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: large;
+}
+
+.transfer-address {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+  margin: 1rem 0;
+}
+
+.transfer-address-input {
+  width: 20rem;
+  margin: 0 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.amount-transfer {
+  display: flex;
+  justify-content: center;
+  font-size: large;
+}
+
+.amount-transfer-input {
+  width: 12rem;
+  margin: 0 1rem;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.send-token {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 1rem;
+}
+
+.send-token-button {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  font-size: larger;
+  border-style: solid;
+  border-color: #FFFFFF;
+}
