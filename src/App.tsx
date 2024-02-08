@@ -8,6 +8,7 @@ import { contractABI, contractAddress } from './constants/contract';
 function App() {
   const [web3, setWeb3] = useState(null);
   const [account, setAccount] = useState(null);
+  const [balance, setBalance] = useState(0);
   const [contract, setContract] = useState(null);
   const [recieverAccount, setRecieverAccount] = useState("");
   const [sendValue, setSendValue] = useState("");
@@ -27,6 +28,8 @@ function App() {
 
             const accounts = await web3Instance.eth.getAccounts();
             setAccount(accounts[0]);
+            console.log(await contractInstance.methods.balanceOf(accounts[0]).call() / BigInt("1000000000000000000"));
+            setBalance(await contractInstance.methods.balanceOf(accounts[0]).call() / BigInt("1000000000000000000"));            // setBalance(bal);
           })
           .catch(err => {
             console.error(err);
@@ -76,7 +79,10 @@ function App() {
     <>
       <div className='page'>
         <div className='wallet-address-section'>
-          Wallet Address : {account}
+          Wallet Address : <span style={{ color: 'aqua' }}>{account}</span>
+        </div>
+        <div className='wallet-balance-section'>
+          Wallet Balance : <span style={{ color: 'aqua' }}>{balance.toString()}</span>
         </div>
         <div className='heading'>Transfer Tokens to someone</div>
         <div>
